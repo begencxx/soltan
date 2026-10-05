@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Staff - Soltan Restaurant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/staff.css">
+</head>
+<body>
+  <div id="loginBox" class="login-box">
+    <form id="loginForm">
+      <h1>Soltan Staff</h1>
+      <input type="email" id="loginEmail" placeholder="Email" required autocomplete="username">
+      <input type="password" id="loginPass" placeholder="Parol" required autocomplete="current-password">
+      <div id="loginErr" class="err"></div>
+      <button class="btn-save-modal" type="submit">Girmek</button>
+    </form>
+  </div>
+
+  <div id="app" style="display:none">
+    <header class="header">
+      <h1>Soltan Staff</h1>
+      <div class="header-actions">
+        <button id="btnOpenAddModal" class="btn-add-product" type="button">+ Täze haryt</button>
+        <div id="statusCounter" class="status-counter">Aktiw: 0</div>
+        <button id="btnLogout" class="btn-edit-item" type="button">Çykmak</button>
+      </div>
+    </header>
+    <main class="container">
+      <section>
+        <h2 class="sec-title">Sargytlar</h2>
+        <div class="tabs"><button class="tab active" data-tab="active">Aktiw</button><button class="tab" data-tab="done">Taryh</button></div>
+        <div id="ordersContainer"></div>
+      </section>
+      <section>
+        <h2 class="sec-title">Harytlar Menýusy</h2>
+        <button id="btnSeed" class="btn-add-product" type="button" style="display:none;margin-bottom:12px">Başlangyç menýuny ýükle</button>
+        <div id="staffProductsContainer" class="staff-products-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="productModal" class="staff-modal-overlay">
+    <div class="staff-modal-dialog">
+      <h2 id="modalTitle" class="modal-title"></h2>
+      <form id="productForm" class="product-form">
+        <input type="hidden" id="editProductId">
+        <div class="form-group"><label for="productName">Ady (TM)</label><input type="text" id="productName" required></div>
+        <div class="form-group"><label for="productNameRu">Ady (RU)</label><input type="text" id="productNameRu"></div>
+        <div class="form-group"><label for="productNameEn">Ady (EN)</label><input type="text" id="productNameEn"></div>
+        <div class="form-group"><label for="productCategory">Kategoriýa</label><select id="productCategory" required></select></div>
+        <div class="form-group"><label for="productPrice">Bahasy (TMT)</label><input type="number" step="0.5" min="0" id="productPrice" required></div>
+        <div class="form-group"><label for="productDesc">Düşündiriş</label><textarea id="productDesc" rows="3"></textarea></div>
+        <div class="form-group">
+          <label>Içindäkiler</label>
+          <div class="ingredients-input-wrapper"><input type="text" id="productIngredientInput"><button type="button" id="btnAddTag" class="btn-add-tag">+</button></div>
+          <div id="ingredientsTagsContainer" class="ingredients-tags"></div>
+        </div>
+        <div class="form-group">
+          <label>Surat</label>
+          <div id="dropZone" class="drop-zone">
+            <div class="drop-zone-text">Suraty bärde goýuň ýa-da basyp saýlaň</div>
+            <input type="file" id="productImageInput" accept="image/*" style="display:none">
+            <div id="dropZonePreviews" class="drop-zone-previews"></div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="btnCancelModal" class="btn-cancel-modal">Lökder et</button>
+          <button type="submit" id="btnSaveModal" class="btn-save-modal">Ýatda sakla</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+  <script src="assets/js/firebase-config.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/staff.js"></script>
+</body>
+</html>

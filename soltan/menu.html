@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soltan Restaurant - Premium Online Menu</title>
+  <meta name="description" content="Soltan Restaurant online menu and delivery orders.">
+  <meta name="theme-color" content="#061712">
+  <meta property="og:title" content="Soltan Restaurant">
+  <meta property="og:description" content="Online menu and delivery orders.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/images/soltanlogo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/menu.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-logo">
+        <div class="logo-box">
+          <img src="assets/images/soltanlogo.jpg" alt="Soltan Logo" class="logo-img">
+        </div>
+        
+        <div class="logo-text-group">
+          <span class="logo-text">SOLTAN</span>
+          <span class="logo-sub">RESTAURANT</span>
+        </div>
+      </div>
+
+      <!-- Language Selector -->
+      <select class="lang-selector" id="langSelector" aria-label="Select Language">
+        <option value="tm">TM</option>
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+      </select>
+    </div>
+  </header>
+
+  <section class="controls-section">
+    <div class="search-bar">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="searchInput" class="search-input" data-i18n-ph="searchPlaceholder" placeholder="Gözleg..." autocomplete="off">
+    </div>
+
+    <nav class="categories-nav" id="categoriesNav">
+      <!-- Dynamic categories populated via index.js -->
+    </nav>
+  </section>
+
+  <!-- Dynamic product cards populated via index.js -->
+  <main class="menu-grid" id="menuGrid"></main>
+
+  <div class="toast" id="toast" data-i18n="addedToast">Haryt sebede goşuldy</div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-modal" id="cartModal">
+    <div class="cart-header">
+      <h2 data-i18n="myCart">Sebedim</h2>
+      <button class="close-cart-btn" id="closeCartBtn" aria-label="Close Cart">&times;</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <p class="empty-cart-msg" data-i18n="emptyCart">Sebediňiz boş</p>
+    </div>
+    <div class="cart-footer">
+      <div class="total-row">
+        <span data-i18n="totalLabel">Umumy:</span>
+        <span id="cartTotalPrice">0.00 TMT</span>
+      </div>
+      <button class="checkout-btn" id="openCheckoutModalBtn" data-i18n="orderBtn">Sargyt et</button>
+    </div>
+  </aside>
+
+  <!-- Checkout Form Modal -->
+  <div class="checkout-overlay" id="checkoutOverlay">
+    <div class="checkout-dialog">
+      <h2 class="dialog-title">Soltan Restaurant</h2>
+      <div class="dialog-total" id="dialogTotal">Umumy: 0.00 TMT</div>
+
+      <div class="dialog-items-box" id="dialogItemsBox"></div>
+
+      <form id="orderForm" class="checkout-form">
+        <div class="form-group">
+          <label for="custName" data-i18n="nameLabel">Adyňyz Familiýaňyz</label>
+          <input type="text" id="custName" data-i18n-ph="namePlaceholder" placeholder="Adyňyzy we Familiýaňyzy ýazyň" required autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label for="custPhone" data-i18n="phoneLabel">Telefon nomeriňiz</label>
+          <input type="tel" inputmode="tel" id="custPhone" value="+993" required autocomplete="off" maxlength="12">
+        </div>
+
+        <div class="form-group">
+          <label for="custAddress" data-i18n="addressLabel">Adresiňiz</label>
+          <textarea id="custAddress" rows="3" data-i18n-ph="addressPlaceholder" placeholder="Adresiňizi ýazyň" required autocomplete="off"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="orderNote" data-i18n="noteLabel">Bellik</label>
+          <input type="text" id="orderNote" data-i18n-ph="notePlaceholder" placeholder="Bellik" autocomplete="off">
+        </div>
+
+        <input type="text" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <div class="dialog-actions">
+          <button type="button" class="btn-cancel" id="closeCheckoutBtn" data-i18n="cancelBtn">Aýyr</button>
+          <button type="submit" class="btn-submit" data-i18n="submitBtn">Sargyt ediň</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="checkout-overlay" id="successOverlay">
+    <div class="checkout-dialog" style="text-align:center">
+      <h2 class="dialog-title" data-i18n="successTitle">Sargydyňyz kabul edildi</h2>
+      <div class="dialog-total" id="successNum"></div>
+      <p data-i18n="successText">Operatorymyz size tizara jaň eder.</p>
+      <div class="dialog-actions"><button type="button" class="btn-submit" id="closeSuccessBtn" data-i18n="closeBtn">Bolýar</button></div>
+    </div>
+  </div>
+
+  <button class="cart-fab" id="cartFab" aria-label="Cart">
+    <div class="fab-content">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      <span data-i18n="myCart">Sebedim</span>
+    </div>
+    <span class="cart-badge" id="cartBadge">0</span>
+  </button>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <!-- App Scripts -->
+  <script src="assets/js/firebase-config.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/menu.js"></script>
+</body>
+</html>

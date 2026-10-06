@@ -2,7 +2,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     // Replace with your staff email(s)
-    function staff() { return request.auth != null && request.auth.token.email in ['CHANGE_ME@example.com']; }
+    function staff() { return request.auth != null && request.auth.token.email in ['permanowbegenc992@gmail.com']; }
 
     function validOrder() {
       let d = request.resource.data;

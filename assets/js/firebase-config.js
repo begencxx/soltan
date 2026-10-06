@@ -1,11 +1,11 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyAbpEjZHaiZIiZ5E5tCjhmtMpQqGAcyEmg",
-  authDomain: "soltan-restaurant.firebaseapp.com",
-  projectId: "soltan-restaurant",
-  storageBucket: "soltan-restaurant.firebasestorage.app",
-  messagingSenderId: "237531658514",
-  appId: "1:237531658514:web:15c1597666ed09bf51dbcb",
-  measurementId: "G-JXH77NBMSY"
+  apiKey: "AIzaSyAGM9QKV5SInE8QTWAztfvVPHlrkCSr_DU",
+  authDomain: "http://soltanv2-815dc.firebaseapp.com",
+  projectId: "soltanv2-815dc",
+  storageBucket: "http://soltanv2-815dc.firebasestorage.app",
+  messagingSenderId: "418169662039",
+  appId: "1:418169662039:web:29e3e9f461da7365961112",
+  measurementId: "G-EBDS7G7KK0"
 };
 
 // Initialize Firebase & Firestore
